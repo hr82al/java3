@@ -17,7 +17,11 @@ public class Box<T extends Fruit> {
 
     public float getWeight() {
         if (fruits.size() != 0) {
-            return fruits.get(0).getWeight() * fruits.size();
+            float weigt = 0;
+            for (T fruit : fruits) {
+                weigt += fruit.getWeight();
+            }
+            return weigt;
         } else {
             return 0;
         }
@@ -35,8 +39,8 @@ public class Box<T extends Fruit> {
         return str;
     }
 
-    public boolean compare(Box box2) {
-        return this.getWeight() == box2.getWeight();
+    public boolean compare(Box<?> box2) {
+        return (this.getWeight() - box2.getWeight()) < 0.0001;
     }
 
     public void move(Box<T> box3) {
