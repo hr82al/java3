@@ -1,4 +1,4 @@
-package ru.geekbrains.java3.lesson8;
+package ru.geekbrains.java3.lesson2;
 
 import java.util.Objects;
 

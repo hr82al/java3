@@ -1,8 +1,7 @@
-package ru.geekbrains.java3.lesson8;
+package ru.geekbrains.java3.lesson2;
 
 import org.sqlite.JDBC;
 
-import java.awt.dnd.DragGestureEvent;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
