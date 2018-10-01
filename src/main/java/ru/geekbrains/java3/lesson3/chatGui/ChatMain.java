@@ -7,5 +7,6 @@ public class ChatMain {
         chatWindow.init(messages);
         Sender sender = new Sender(chatWindow, messages);
         sender.init();
+
     }
 }
