@@ -6,12 +6,14 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class ClientChat {
-    public static void init(String[] args) {
+    private static PrintWriter out;
+    private static Scanner in;
+    public static void init() {
         final String ADDR = "localhost";
         final int PORT = 8189;
         try (Socket socket = new Socket(ADDR, PORT)){
-            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-            Scanner in = new Scanner(socket.getInputStream());
+            out = new PrintWriter(socket.getOutputStream(), true);
+            in = new Scanner(socket.getInputStream());
             Scanner input = new Scanner(System.in);
 
             new Chat(in, input, out, "Client").run();
