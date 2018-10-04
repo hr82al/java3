@@ -6,11 +6,19 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Server {
     private ServerSocket serverSocket;
     private AuthService authService;
     private Map<String, ClientHandler> clients = new HashMap<>();
+
+    public static ExecutorService getExecutorService() {
+        return executorService;
+    }
+
+    private static ExecutorService executorService;
 
     public Server(AuthService authService) {
         this.authService = authService;
@@ -35,6 +43,7 @@ public class Server {
     public static void main(String[] args) {
         AuthService baseAuthService = new BaseAuthService();
         Server server = new Server(baseAuthService);
+        executorService = Executors.newFixedThreadPool(1000);
         server.start();
     }
 

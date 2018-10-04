@@ -35,7 +35,6 @@ public class Main {
 
     private synchronized void printChar(char aChar) {
         for (int i = 0; i < 5; i++) {
-
             while (aChar != getCurrentChar()) {
                 try {
                     wait();
