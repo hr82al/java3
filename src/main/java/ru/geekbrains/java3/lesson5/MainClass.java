@@ -1,5 +1,9 @@
 package ru.geekbrains.java3.lesson5;
 
+import sun.security.krb5.internal.ccache.CCacheInputStream;
+
+import java.util.concurrent.CyclicBarrier;
+
 /**
  * Организуем гонки:
  * Все участники должны стартовать одновременно, несмотря на то, что на подготовку у каждого их них уходит разное время.
@@ -10,6 +14,7 @@ package ru.geekbrains.java3.lesson5;
  */
 public class MainClass {
     public static final int CARS_COUNT = 4;
+    public static final CyclicBarrier cb = new CyclicBarrier(CARS_COUNT);
     public static void main(String[] args) {
         System.out.println("ВАЖНОЕ ОБЪЯВЛЕНИЕ >>> Подготовка!!!");
         Race race = new Race(new Road(60), new Tunnel(), new Road(40));
