@@ -17,7 +17,7 @@ public class ClientHandler {
 
         try {
             channel = ChannelBase.of(socket);
-            new Thread(() -> {
+            Server.getExecutorService().execute(() -> {
                 auth();
                 System.out.println(nick + " handler waiting for new massages");
                 while (socket.isConnected()) {
@@ -50,7 +50,7 @@ public class ClientHandler {
                             System.out.println("invalid message type");
                     }
                 }
-            }).start();
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
