@@ -1,6 +1,8 @@
 package ru.geekbrains.java3.lesson2;
 
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -9,6 +11,7 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+@Slf4j
 public class Server {
     private ServerSocket serverSocket;
     private AuthService authService;
@@ -24,7 +27,8 @@ public class Server {
         this.authService = authService;
         try {
             serverSocket = new ServerSocket(8189);
-            System.out.println("Сервер запущен, ожидаем подключения...");
+            log.info("Сервер запущен, ожидаем подключения...");
+            //System.out.println("Сервер запущен, ожидаем подключения...");
         } catch (IOException e) {
             System.out.println("Ошибка инициализации сервера");
             close();
