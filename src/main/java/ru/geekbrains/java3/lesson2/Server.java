@@ -28,9 +28,8 @@ public class Server {
         try {
             serverSocket = new ServerSocket(8189);
             log.info("Сервер запущен, ожидаем подключения...");
-            //System.out.println("Сервер запущен, ожидаем подключения...");
         } catch (IOException e) {
-            System.out.println("Ошибка инициализации сервера");
+            log.error("Ошибка инициализации сервера");
             close();
         }
     }
@@ -79,14 +78,14 @@ public class Server {
     public void subscribe(ClientHandler clientHandler) {
         String msg = "Клиент " + clientHandler.getNick() + " подключился";
         sendBroadcastMessage(msg);
-        System.out.println(msg);
+        log.info(msg);
         clients.put(clientHandler.getNick(), clientHandler);
     }
 
     public void unsubscribe(ClientHandler clientHandler) {
         String msg = "Клиент " + clientHandler.getNick() + " отключился";
         sendBroadcastMessage(msg);
-        System.out.println(msg);
+        log.info(msg);
         clients.remove(clientHandler.getNick());
     }
 
