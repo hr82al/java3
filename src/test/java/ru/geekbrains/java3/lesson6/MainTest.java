@@ -1,6 +1,7 @@
 package ru.geekbrains.java3.lesson6;
 
 import org.junit.Test;
+import ru.geekbrains.java3.lesson6.Main;
 
 import static org.junit.Assert.*;
 

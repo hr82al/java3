@@ -1,6 +1,7 @@
 package ru.geekbrains.java3.lesson3.chatGui;
 
 import lombok.Data;
+import lombok.Getter;
 import ru.geekbrains.java3.lesson2.Message;
 
 import javax.swing.*;
@@ -8,7 +9,7 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-@Data
+@Getter
 public class ChatWindow extends JFrame {
 
     private static final Double SIZE_RATIO = 0.6;
