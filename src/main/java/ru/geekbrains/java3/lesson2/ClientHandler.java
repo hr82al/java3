@@ -1,10 +1,13 @@
 package ru.geekbrains.java3.lesson2;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.IOException;
 import java.net.Socket;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@Slf4j
 public class ClientHandler {
     private Server server;
     private String nick;
@@ -19,7 +22,7 @@ public class ClientHandler {
             channel = ChannelBase.of(socket);
             Server.getExecutorService().execute(() -> {
                 auth();
-                System.out.println(nick + " handler waiting for new massages");
+                log.info(nick + " handler waiting for new massages");
                 while (socket.isConnected()) {
                     Message msg = channel.getMessage();
                     if (msg == null) continue;
@@ -47,7 +50,7 @@ public class ClientHandler {
                             }
                             break;
                         default:
-                            System.out.println("invalid message type");
+                            log.error("invalid message type");
                     }
                 }
             });
@@ -80,22 +83,22 @@ public class ClientHandler {
                 if (commands.length >= 2) {
                     String login = commands[0];
                     String password = commands[1];
-                    System.out.println("Try to login with " + login + " and " + password);
+                    log.warn("Try to login with " + login + " and " + password);
                     String nick = server.getAuthService()
                             .authByLoginAndPassword(login, password);
                     if (nick == null) {
                         String msg = "Invalid login or password";
-                        System.out.println(msg);
+                        log.error(msg);
                         channel.sendMessage(msg);
                     } else if (server.isNickTaken(nick)) {
                         String msg = "Nick " + nick + " already taken!";
-                        System.out.println(msg);
+                        log.warn(msg);
                         channel.sendMessage(msg);
                     } else {
                         this.nick = nick;
                         String msg = "Auth ok!";
                         TimeoutChecker.unset(this);
-                        System.out.println(msg);
+                        log.info(msg);
                         channel.sendMessage(msg);
                         server.subscribe(this);
                         break;
